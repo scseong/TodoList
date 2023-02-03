@@ -1,0 +1,57 @@
+/* sidebar */
+/* https://coolors.co/fefae0-fcf4d7-faedcd-f8e9c8-f6e4c2-f4e0bd-f1dbb7-ecd2ac-e7c8a0-d4a373 */
+:root {
+  --sidebar-pd: 1rem;
+  --sidebar-li-bg-hover: #fcf4d7;
+  --badge: #f1dbb7;
+}
+
+.sidebar {
+  width: 20vw;
+  height: 100vh;
+  padding: 0;
+  border-right: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.sidebar__logo {
+  width: 100%;
+  padding: var(--sidebar-pd);
+}
+
+.sidebar__logo svg {
+  margin-right: 0.3rem;
+  transform: translateY(0.1rem);
+}
+
+.sidebar__logo h1 {
+  display: inline-block;
+  font-size: 1.6rem;
+  font-weight: 500;
+  line-height: 2rem;
+}
+
+.sidebar__nav ul li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--sidebar-pd);
+  font-weight: 500;
+  transition: background-color 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.sidebar__nav ul li:hover {
+  background-color: var(--sidebar-li-bg-hover);
+}
+
+.badge {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 1rem;
+  height: 1rem;
+  padding: 0.7rem;
+  border-radius: 0.4rem;
+  background-color: var(--badge);
+  font-size: 0.9rem;
+}
