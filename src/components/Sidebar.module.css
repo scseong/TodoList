@@ -2,15 +2,19 @@
 /* https://coolors.co/fefae0-fcf4d7-faedcd-f8e9c8-f6e4c2-f4e0bd-f1dbb7-ecd2ac-e7c8a0-d4a373 */
 :root {
   --sidebar-pd: 1rem;
-  --sidebar-li-bg-hover: #fcf4d7;
-  --badge: #f1dbb7;
+  --sidebar-bg: #a2d2ff;
+  --sidebar-text: #ffffff;
+  --sidebar-li-nav-bg-hover: #749fc5;
+  --sidebar-li-text-hover: #1d3557;
+  --sidebar-badge-bg: #8ecae6;
 }
 
 .sidebar {
   width: 20vw;
   height: 100vh;
   padding: 0;
-  border-right: 1px solid rgba(0, 0, 0, 0.12);
+  background-color: var(--sidebar-bg);
+  color: var(--sidebar-text);
 }
 
 .sidebar__logo {
@@ -30,18 +34,18 @@
   line-height: 2rem;
 }
 
-.sidebar__nav ul li {
+.sidebar__nav ul li a {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: var(--sidebar-pd);
   font-weight: 500;
-  transition: background-color 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
   cursor: pointer;
 }
 
 .sidebar__nav ul li:hover {
-  background-color: var(--sidebar-li-bg-hover);
+  color: var(--sidebar-li-text-hover);
 }
 
 .badge {
@@ -52,6 +56,10 @@
   height: 1rem;
   padding: 0.7rem;
   border-radius: 0.4rem;
-  background-color: var(--badge);
+  background-color: var(--sidebar-badge-bg);
   font-size: 0.9rem;
+}
+
+.isLocated {
+  background-color: var(--sidebar-li-nav-bg-hover);
 }

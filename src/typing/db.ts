@@ -15,6 +15,10 @@ export interface IToDoState {
   [key: string]: IToDo[];
 }
 
+export interface IToDoLengthState {
+  [key: string]: number;
+}
+
 // Sidebar
 export interface ISidebarProps {
   data: IToDoState;
