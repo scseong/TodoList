@@ -49,3 +49,7 @@ a {
 * {
     box-sizing: border-box;
 }
+#root {
+	display: grid;
+	grid-template-columns: auto 1fr;
+}

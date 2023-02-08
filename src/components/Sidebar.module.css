@@ -1,10 +1,9 @@
 /* sidebar */
-/* https://coolors.co/fefae0-fcf4d7-faedcd-f8e9c8-f6e4c2-f4e0bd-f1dbb7-ecd2ac-e7c8a0-d4a373 */
 :root {
   --sidebar-pd: 1rem;
   --sidebar-bg: #a2d2ff;
   --sidebar-text: #ffffff;
-  --sidebar-li-nav-bg-hover: #749fc5;
+  --sidebar-li-nav-bg-hover: #cae6ff;
   --sidebar-li-text-hover: #1d3557;
   --sidebar-badge-bg: #8ecae6;
 }

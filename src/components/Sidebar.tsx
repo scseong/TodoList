@@ -1,18 +1,15 @@
-import React, { memo } from 'react';
+import React from 'react';
 import styles from './Sidebar.module.css';
 import { RiTodoLine } from 'react-icons/ri';
 import { IToDoLengthState } from '../typing/db';
 import SidebarItem from './SidebarItem';
 
-interface IProps {
-  data: IToDoLengthState;
+interface ISidebarProps {
+  toDoLengthObj: IToDoLengthState;
 }
 
-function Sidebar({ data }: IProps) {
-  let all_length = 0;
-  Object.keys(data).forEach((category) => (all_length += data[category]));
-  data = { All: all_length, ...data };
-
+export default function Sidebar({ toDoLengthObj }: ISidebarProps) {
+  console.log('Sidebar');
   return (
     <aside className={styles.sidebar}>
       <div className={styles.sidebar__logo}>
@@ -21,13 +18,11 @@ function Sidebar({ data }: IProps) {
       </div>
       <div className={styles.sidebar__nav}>
         <ul>
-          {Object.keys(data).map((key) => (
-            <SidebarItem category={key} length={data[key]} key={key} />
+          {Object.keys(toDoLengthObj).map((key) => (
+            <SidebarItem status={key} length={toDoLengthObj[key]} key={key} />
           ))}
         </ul>
       </div>
     </aside>
   );
 }
-
-export default memo(Sidebar);

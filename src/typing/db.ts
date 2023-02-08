@@ -1,25 +1,16 @@
-type Status = 'Active' | 'Completed';
-type Categories = '';
-type Tags = '';
+export type Status = 'active' | 'completed';
+export type Categories = '';
+export type Tags = '';
 
 export interface IToDo {
-  id: number;
+  id: string;
+  createdBy: string;
+  description: string;
+  status: Status;
   category?: Categories;
-  status?: Status;
-  time?: number;
-  content: string;
-  tag?: Tags;
-}
-
-export interface IToDoState {
-  [key: string]: IToDo[];
+  tags?: Tags;
 }
 
 export interface IToDoLengthState {
   [key: string]: number;
-}
-
-// Sidebar
-export interface ISidebarProps {
-  data: IToDoState;
 }

@@ -1,34 +1,48 @@
 import React, { useState, useEffect } from 'react';
-import { Outlet } from 'react-router';
 import Sidebar from '../components/Sidebar';
-import { IToDoLengthState, IToDoState } from '../typing/db';
+import ToDos from '../components/ToDos';
+import { useLocalStorage } from '../hooks/useLocalStorage';
+import { IToDo, IToDoLengthState } from '../typing/db';
 
-const data = {
-  Active: [
-    { id: 0, content: 'hi' },
-    { id: 1, content: 'hello' },
-  ],
-  Completed: [{ id: 2, content: 'hehe' }],
-};
-
-type IDataKeys = 'Active' | 'Completed';
+const data = [
+  {
+    id: 0,
+    description: 'Create react app',
+    status: 'completed',
+    createdBy: Date.now(),
+  },
+  {
+    id: 1,
+    description: 'Sidebar component implementation',
+    status: 'active',
+    createdBy: Date.now(),
+  },
+  { id: 2, description: 'Routing', status: 'completed', createdBy: Date.now() },
+  { id: 3, description: 'Show todos', status: 'active', createdBy: Date.now() },
+  { id: 4, description: 'Styling', status: 'active', createdBy: Date.now() },
+];
 
 export default function Home() {
-  const [sideObj, setSideObj] = useState({} as IToDoLengthState);
+  const [toDos, setToDos] = useLocalStorage('toDos', [{}] as IToDo[]);
+  const [toDosLengthObj, setToDosLengthObj] = useState({} as IToDoLengthState);
 
   useEffect(() => {
-    const obj = {} as IToDoLengthState;
-    const dataKeys = Object.keys(data);
-    dataKeys.map((key) => {
-      obj[key] = data[key as IDataKeys].length;
+    const toDosLength = toDos.length;
+    const activeLength = toDos.filter(
+      (toDo) => toDo.status === 'active',
+    ).length;
+    const completedLength = toDosLength - activeLength;
+    setToDosLengthObj({
+      all: toDosLength,
+      active: activeLength,
+      completed: completedLength,
     });
-    setSideObj(obj);
-  }, []);
+  }, [toDos]);
 
   return (
     <>
-      <Sidebar data={sideObj} />
-      <Outlet />
+      <Sidebar toDoLengthObj={toDosLengthObj} />
+      <ToDos toDos={toDos} />
     </>
   );
 }
