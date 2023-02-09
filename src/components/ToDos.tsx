@@ -14,23 +14,22 @@ export default function ToDos({ toDos }: IToDosProps) {
     location.pathname === '/' ? 'all' : location.pathname.substring(1);
 
   return (
-    <main className={styles.toDos}>
-      <h2 className={styles.toDos__title}>{capitalizeFirstLetter(status)}</h2>
+    <main className={styles.toDos} style={{ backgroundColor: '#FFF5E4' }}>
+      <h2 className={styles.toDos__title}>진행중</h2>
+      {/* <h2 className={styles.toDos__title}>{capitalizeFirstLetter(status)}</h2>
       <div className={styles.toDos__contents}>
         <ul>
           {status === 'all'
             ? toDos?.map((toDo) => {
-                console.log(toDo.description);
                 return <li key={toDo.id}>{toDo.description}</li>;
               })
             : toDos
                 ?.filter((toDo) => toDo.status === status)
                 .map((toDo) => {
-                  console.log(toDo.description);
                   return <li key={toDo.id}>{toDo.description}</li>;
                 })}
         </ul>
-      </div>
+      </div> */}
     </main>
   );
 }

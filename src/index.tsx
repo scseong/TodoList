@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { RouterProvider } from 'react-router';
 import './index.css';
+import { ToDosProvider } from './reducer/ToDosContext';
 import { router } from './Router';
 
 const root = ReactDOM.createRoot(
@@ -9,6 +10,8 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <ToDosProvider>
+      <RouterProvider router={router} />
+    </ToDosProvider>
   </React.StrictMode>,
 );

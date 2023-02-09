@@ -6,10 +6,13 @@ export interface IToDo {
   id: string;
   createdBy: string;
   description: string;
-  status: Status;
   category?: Categories;
   tags?: Tags;
 }
+
+export type IToDoState = {
+  [key in Status]: IToDo[];
+};
 
 export interface IToDoLengthState {
   [key: string]: number;
