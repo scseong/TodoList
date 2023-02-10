@@ -12,6 +12,10 @@ export const router = createBrowserRouter([
         path: 'active',
         element: <ToDos />,
       },
+      {
+        path: 'completed',
+        element: <ToDos />,
+      },
     ],
   },
 ]);
