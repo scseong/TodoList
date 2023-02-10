@@ -29,7 +29,9 @@ interface IProviderProp {
 export const initializer = (initialValue = {}) =>
   JSON.parse(localStorage?.getItem('toDos') || '') || initialValue;
 
-export const ToDosContext = createContext<ContextProp | null>(null);
+// export const ToDosContext = createContext<ContextProp | null>(null);
+export const ToDosStateContext = createContext<IToDoState | null>(null);
+export const ToDosDispatchContext = createContext<ToDosDispatch | null>(null);
 
 export const ToDosProvider = ({ children }: IProviderProp) => {
   const [toDos, dispatch] = useReducer(toDosReducer, initialState, initializer);
@@ -39,13 +41,22 @@ export const ToDosProvider = ({ children }: IProviderProp) => {
   // const updateToDo = () => dispatch({ type: 'UPDATE_TODO' });
 
   return (
-    <ToDosContext.Provider value={{ toDos, dispatch }}>
-      {children}
-    </ToDosContext.Provider>
+    <ToDosStateContext.Provider value={toDos}>
+      <ToDosDispatchContext.Provider value={dispatch}>
+        {children}
+      </ToDosDispatchContext.Provider>
+    </ToDosStateContext.Provider>
   );
 };
 
 export function useToDosState() {
-  const toDos = useContext(ToDosContext);
+  const toDos = useContext(ToDosStateContext);
+  if (!toDos) throw new Error('Cannot find SampleProvider');
   return toDos;
+}
+
+export function useToDosDispatch() {
+  const dispatch = useContext(ToDosDispatchContext);
+  if (!dispatch) throw new Error('Cannot find SampleProvider');
+  return dispatch;
 }
