@@ -1,9 +1,129 @@
-.toDos {
-  padding: 2rem;
+:root {
+  --main-bg: #fff5e4;
+  --main-text: #1d3557;
+  --main-nav-badge: #fff;
 }
 
-.toDos__title {
+.toDos {
+  padding: 3rem 2rem 2rem;
+  background-color: var(--main-bg);
+  color: var(--main-text);
+}
+
+/* main header */
+.toDos-heading {
+  margin-bottom: 2rem;
+}
+
+.toDos-heading h2 {
   font-size: 2rem;
-  font-weight: 500;
+  line-height: 1.5;
+}
+
+/* main nav */
+.toDos-nav {
+  margin-bottom: 2rem;
+}
+
+/* main nav in contnets */
+.toDos-nav ul {
+  display: flex;
+  border-bottom: 2px solid #000;
+}
+
+.toDos-nav__item,
+.toDos-nav__item--active {
+  position: relative;
+  margin-right: 1rem;
+  text-align: center;
+}
+
+.toDos-nav__item--active {
+  border-bottom: 2px solid black;
+}
+
+.toDos-nav__item a,
+.toDos-nav__item--active a {
+  display: inline-block;
+  padding: 1rem 0;
+}
+
+.toDos-nav__count {
+  margin-right: 0.4rem;
   color: #1d3557;
+}
+
+/* main wrapper */
+.toDos-wrapper {
+  max-width: 50vw;
+}
+
+.toDos-wrapper__heading {
+  margin-bottom: 1rem;
+}
+
+.toDos-wrapper__heading h3 {
+  font-size: 1.5rem;
+}
+
+.toDos-wrapper__lists {
+  margin-bottom: 1rem;
+}
+
+.toDos-wrapper__list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.4rem 0;
+}
+
+.toDos-wrapper__list input {
+  flex: 0 1 0;
+}
+
+.toDos-wrapper__list label {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+}
+
+.toDos-wrapper__list span {
+  flex: 1 1 0;
+}
+
+.toDos-wrapper__list span ~ span {
+  flex: 0 0 auto;
+  opacity: 0.6;
+}
+
+/* checkbox */
+.toDos-wrapper__list input {
+  cursor: pointer;
+}
+.toDos-wrapper__list label {
+  position: relative;
+  display: block;
+  width: 30px;
+  height: 30px;
+  border-radius: 30px;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.toDos-wrapper__list input:checked ~ label::after {
+  content: 'X';
+  font-size: 25px;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #000;
 }

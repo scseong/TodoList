@@ -1,14 +1,11 @@
 /* sidebar */
 :root {
-  --sidebar-pd: 1rem;
   --sidebar-bg: #fff;
   --sidebar-text: #25396f;
-
   --sidebar-li-hover: #f1f4ff;
   --sidebar-li-text-hover: #fff;
   --sidebar-li-bg: #fff;
   --sidebar-li-bg-active: #435ebe;
-
   --toggle-bg: #25396f;
   --toggle-switch: #25396f;
 }
@@ -26,23 +23,21 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 2rem 2rem 1rem;
+  padding: 3rem 2rem 2rem;
 }
 .sidebar-header__logo {
-  font-size: 1.5rem;
-  line-height: 2rem;
+  height: fit-content;
+  font-size: 2rem;
   color: var(--sidebar-text);
   cursor: pointer;
 }
 
 .sidebar-header__logo i {
-  width: 20px;
-  height: 20px;
   margin-right: 4px;
 }
 
 .sidebar-header svg {
-  transform: translateY(20%);
+  transform: translateY(15%);
 }
 
 .sidebar-header__logo h1 {
