@@ -2,8 +2,8 @@ import React from 'react';
 import { IToDo, IToDoState } from './../typing/db';
 
 export const initialState = {
-  active: [] as IToDo[],
-  completed: [] as IToDo[],
+  진행중: [] as IToDo[],
+  완료: [] as IToDo[],
 };
 
 export const toDosReducer = (state: IToDoState, action: any) => {
