@@ -26,8 +26,10 @@ interface IProviderProp {
   children: React.ReactNode;
 }
 
-export const initializer = (initialValue = {}) =>
-  JSON.parse(localStorage?.getItem('toDos') || '') || initialValue;
+export const initializer = (initialValue = {}) => {
+  if (localStorage?.getItem('toDos') === null) return initialValue;
+  return JSON.parse(localStorage?.getItem('toDos') || '');
+};
 
 // export const ToDosContext = createContext<ContextProp | null>(null);
 export const ToDosStateContext = createContext<IToDoState | null>(null);
