@@ -45,3 +45,11 @@ export const mockData = {
     { id: 2, description: '라우팅 설정', createdBy: Date.now() },
   ],
 };
+
+// Date
+export interface DateTimeFormatOptions {
+  weekday?: 'long' | 'short' | 'narrow' | undefined;
+  year?: 'numeric' | '2-digit' | undefined;
+  month?: 'numeric' | '2-digit' | 'long' | 'short' | 'narrow' | undefined;
+  day?: 'numeric' | '2-digit' | undefined;
+}

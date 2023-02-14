@@ -1,35 +1,32 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
-import { IToDo } from '../typing/db';
-import { capitalizeFirstLetter } from '../utils/String';
+import { Location } from 'react-router-dom';
+import { useToDosState } from '../reducer/ToDosContext';
 import styles from './ToDos.module.css';
+import ToDosList from './ToDosList';
+import ToDosNav from './ToDosNav';
 
-interface IToDosProps {
-  toDos?: IToDo[];
+interface IToDosProp {
+  location?: Location;
 }
 
-export default function ToDos({ toDos }: IToDosProps) {
-  const location = useLocation();
-  const status =
-    location.pathname === '/' ? 'all' : location.pathname.substring(1);
+export default function ToDos({ location }: IToDosProp) {
+  const toDos = useToDosState();
+
+  const toDosLength = {
+    all: toDos.진행중.length + toDos.완료.length,
+    active: toDos.진행중.length,
+    completed: toDos.완료.length,
+  };
 
   return (
-    <main className={styles.toDos} style={{ backgroundColor: '#FFF5E4' }}>
-      <h2 className={styles.toDos__title}>진행중</h2>
-      {/* <h2 className={styles.toDos__title}>{capitalizeFirstLetter(status)}</h2>
-      <div className={styles.toDos__contents}>
-        <ul>
-          {status === 'all'
-            ? toDos?.map((toDo) => {
-                return <li key={toDo.id}>{toDo.description}</li>;
-              })
-            : toDos
-                ?.filter((toDo) => toDo.status === status)
-                .map((toDo) => {
-                  return <li key={toDo.id}>{toDo.description}</li>;
-                })}
-        </ul>
-      </div> */}
+    <main className={styles['toDos']}>
+      <div className={styles['toDos-heading']}>
+        <h2>투두스</h2>
+      </div>
+      <div className={styles['toDos-container']}>
+        <ToDosNav toDosLength={toDosLength} location={location} />
+        <ToDosList toDos={toDos} />
+      </div>
     </main>
   );
 }
