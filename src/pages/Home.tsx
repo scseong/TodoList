@@ -1,15 +1,20 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
 import Sidebar from '../components/Sidebar';
-import ToDos from '../components/ToDos';
+import Board from '../components/Board';
+import { useToDosState } from '../reducer/ToDosContext';
 
 export default function Home() {
-  const location = useLocation();
+  const toDos = useToDosState();
+  const toDosKeys = Object.keys(toDos);
+  const lengthToDos = Object.assign(
+    {},
+    ...toDosKeys.map((key) => ({ [key]: toDos[key].length })),
+  );
 
   return (
     <>
-      <Sidebar location={location} />
-      <ToDos location={location} />
+      <Sidebar lengthToDos={lengthToDos} />
+      <Board />
     </>
   );
 }

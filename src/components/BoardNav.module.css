@@ -1,0 +1,32 @@
+/* main nav */
+.nav {
+  margin-bottom: 2rem;
+}
+
+/* main nav in contnets */
+.nav ul {
+  display: flex;
+  border-bottom: 2px solid #000;
+}
+
+.nav__item,
+.nav__item--active {
+  position: relative;
+  margin-right: 1rem;
+  text-align: center;
+}
+
+.nav__item--active {
+  border-bottom: 2px solid black;
+}
+
+.nav__item a,
+.nav__item--active a {
+  display: inline-block;
+  padding: 1rem 0;
+}
+
+.count {
+  margin-right: 0.4rem;
+  color: #1d3557;
+}
