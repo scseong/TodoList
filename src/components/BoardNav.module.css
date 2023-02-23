@@ -9,24 +9,26 @@
   border-bottom: 2px solid #000;
 }
 
-.nav__item,
-.nav__item--active {
+.navItem {
   position: relative;
   margin-right: 1rem;
   text-align: center;
+  transition: color 0.2s ease-in-out;
 }
 
-.nav__item--active {
-  border-bottom: 2px solid black;
+.navItem:hover {
+  color: #5076e7;
 }
 
-.nav__item a,
-.nav__item--active a {
+.navItem a {
   display: inline-block;
   padding: 1rem 0;
 }
 
+.navItemActive {
+  border-bottom: 2px solid black;
+}
+
 .count {
-  margin-right: 0.4rem;
-  color: #1d3557;
+  margin-left: 0.4rem;
 }

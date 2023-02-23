@@ -80,19 +80,27 @@
 .navItem a div,
 .navItemActive a div {
   display: flex;
-  width: 100%;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
-  line-height: 1.2rem;
+  width: 100%;
+  gap: 0.6rem;
 }
 
 .navItem a i {
-  transform: translateY(10%);
+  transform: translateY(8%);
 }
 
-/* .navItem a span {
-  line-height: 1.2rem;
-} */
+.navItem a span:nth-child(even) {
+  flex: 1;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.navItem a span,
+.navItemActive a span {
+  line-height: 1.1rem;
+}
 
 .theme label {
   position: relative;

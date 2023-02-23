@@ -10,10 +10,12 @@ export default function Board() {
   return (
     <main className={styles.board}>
       <div className={styles.header}>
-        <h2>투두스</h2>
+        <h2>
+          {location.pathname.split('/')[1].toLocaleUpperCase() || 'INBOX'}
+        </h2>
       </div>
       <div className={styles.container}>
-        <BoardNav category={location.pathname.substring(1)} />
+        <BoardNav category={location.pathname.split('/')[1]} />
         {/* <ToDosList toDos={toDos} /> */}
       </div>
     </main>

@@ -1,54 +1,61 @@
 import React from 'react';
 import { NavLink, Location } from 'react-router-dom';
 import { useToDosState } from '../reducer/ToDosContext';
+import { MAPPING_URL } from '../typing/db';
 import styles from './BoardNav.module.css';
 
-interface IToDosStatus {
-  all: number;
-  active: number;
-  completed: number;
+interface IBoardNavProps {
+  category: string;
 }
 
-export default function BoardNav({ category }: any) {
+export default function BoardNav({ category }: IBoardNavProps) {
   const toDos = useToDosState();
+  const toDosCount = toDos[category].length;
+  const activeCount = toDos[category].filter(
+    (toDo) => toDo.done === true,
+  ).length;
+  const completedCount = toDosCount - activeCount;
+
+  let firstKey;
+  for (firstKey in toDos) break;
 
   return (
     <div className={styles.nav}>
       <ul>
-        {toDos[category || 'inbox'].map((toDo) => {
-          return null;
-          // return (
-          //   <li key={toDo.id}>
-          //     <NavLink to={`${category}/active`}>
-          //       <span className={styles.count}>
-          //         zz
-          //         {/* {toDosLength[toDoKey as Status]} */}
-          //       </span>
-          //       {/* <span>{statusName[toDoKey]}</span> */}
-          //     </NavLink>
-          //   </li>
-          // );
-        })}
-        {/* {Object.keys(toDosLength).map((toDoKey) => {
-          const matchUrl = location?.pathname === statusUrl[toDoKey as Status];
-          return (
-            <li
-              className={
-                matchUrl
-                  ? styles['toDos-nav__item--active']
-                  : styles['toDos-nav__item']
-              }
-              key={toDoKey}
-            >
-              <Link to={statusUrl[toDoKey as Status]}>
-                <span className={styles['toDos-nav__count']}>
-                  {toDosLength[toDoKey as Status]}
-                </span>
-                <span>{statusName[toDoKey as Status]}</span>
-              </Link>
-            </li>
-          );
-        })} */}
+        <li className={styles.navItem}>
+          <NavLink
+            to={`${category}`}
+            className={({ isActive }) =>
+              isActive ? styles.navItemActive : undefined
+            }
+            end
+          >
+            <span>전체</span>
+            <span className={styles.count}>{toDosCount}</span>
+          </NavLink>
+        </li>
+        <li className={styles.navItem}>
+          <NavLink
+            to={`${category || firstKey}${MAPPING_URL.active}`}
+            className={({ isActive }) =>
+              isActive ? styles.navItemActive : undefined
+            }
+          >
+            <span>진행중</span>
+            <span className={styles.count}>{activeCount}</span>
+          </NavLink>
+        </li>
+        <li className={styles.navItem}>
+          <NavLink
+            to={`${category || firstKey}${MAPPING_URL.completed}`}
+            className={({ isActive }) =>
+              isActive ? styles.navItemActive : undefined
+            }
+          >
+            <span>완료</span>
+            <span className={styles.count}>{completedCount}</span>
+          </NavLink>
+        </li>
       </ul>
     </div>
   );
