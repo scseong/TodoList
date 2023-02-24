@@ -6,7 +6,7 @@ import styles from './Board.module.css';
 //   toDos: IToDoState;
 // }
 
-export default function ToDosList({ toDos }: any) {
+export default function ToDoList({ toDos }: any) {
   const [selectedIds, setSelectedIds] = useState(new Set());
   const handleOnChange = (id: string) => {
     const updateIdToSelected = new Set(selectedIds);

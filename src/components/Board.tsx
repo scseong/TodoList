@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './Board.module.css';
-import ToDosList from './ToDosList';
+import ToDoList from './ToDoList';
 import BoardNav from './BoardNav';
 import { useLocation } from 'react-router-dom';
 
@@ -16,7 +16,7 @@ export default function Board() {
       </div>
       <div className={styles.container}>
         <BoardNav category={location.pathname.split('/')[1]} />
-        {/* <ToDosList toDos={toDos} /> */}
+        {/* <ToDoList toDos={toDos} /> */}
       </div>
     </main>
   );

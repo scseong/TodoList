@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink, Location } from 'react-router-dom';
 import { useToDosState } from '../reducer/ToDosContext';
 import { MAPPING_URL } from '../typing/db';
@@ -8,16 +8,28 @@ interface IBoardNavProps {
   category: string;
 }
 
+const ARR_KEY = {
+  all: 0,
+  active: 1,
+  completed: 2,
+};
+
 export default function BoardNav({ category }: IBoardNavProps) {
   const toDos = useToDosState();
-  const toDosCount = toDos[category].length;
-  const activeCount = toDos[category].filter(
-    (toDo) => toDo.done === true,
-  ).length;
-  const completedCount = toDosCount - activeCount;
+  const [lengthArr, setLengthArr] = useState<number[]>([]);
 
-  let firstKey;
+  let firstKey = '';
   for (firstKey in toDos) break;
+
+  useEffect(() => {
+    if (!toDos) return;
+    const toDosCount = toDos[category || firstKey].length;
+    const activeCount = toDos[category || firstKey]?.filter(
+      (toDo) => toDo.done === true,
+    ).length;
+    const completedCount = toDosCount - activeCount || 0;
+    setLengthArr([toDosCount, activeCount, completedCount]);
+  }, [toDos]);
 
   return (
     <div className={styles.nav}>
@@ -31,7 +43,7 @@ export default function BoardNav({ category }: IBoardNavProps) {
             end
           >
             <span>전체</span>
-            <span className={styles.count}>{toDosCount}</span>
+            <span className={styles.count}>{lengthArr[ARR_KEY.all]}</span>
           </NavLink>
         </li>
         <li className={styles.navItem}>
@@ -42,7 +54,7 @@ export default function BoardNav({ category }: IBoardNavProps) {
             }
           >
             <span>진행중</span>
-            <span className={styles.count}>{activeCount}</span>
+            <span className={styles.count}>{lengthArr[ARR_KEY.active]}</span>
           </NavLink>
         </li>
         <li className={styles.navItem}>
@@ -53,7 +65,7 @@ export default function BoardNav({ category }: IBoardNavProps) {
             }
           >
             <span>완료</span>
-            <span className={styles.count}>{completedCount}</span>
+            <span className={styles.count}>{lengthArr[ARR_KEY.completed]}</span>
           </NavLink>
         </li>
       </ul>
