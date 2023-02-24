@@ -6,53 +6,19 @@
 }
 /* https://coolors.co/03045e-023e8a-0077b6-0096c7-00b4d8-48cae4-90e0ef-ade8f4-caf0f8 */
 
-.toDos {
+.board {
   padding: 3rem 2rem 2rem;
   background-color: var(--main-bg);
   color: var(--main-text);
 }
 
-/* main header */
-.toDos-heading {
+.header {
   margin-bottom: 2rem;
 }
 
-.toDos-heading h2 {
+.header h2 {
   font-size: 2rem;
   line-height: 1.5;
-}
-
-/* main nav */
-.toDos-nav {
-  margin-bottom: 2rem;
-}
-
-/* main nav in contnets */
-.toDos-nav ul {
-  display: flex;
-  border-bottom: 2px solid #000;
-}
-
-.toDos-nav__item,
-.toDos-nav__item--active {
-  position: relative;
-  margin-right: 1rem;
-  text-align: center;
-}
-
-.toDos-nav__item--active {
-  border-bottom: 2px solid black;
-}
-
-.toDos-nav__item a,
-.toDos-nav__item--active a {
-  display: inline-block;
-  padding: 1rem 0;
-}
-
-.toDos-nav__count {
-  margin-right: 0.4rem;
-  color: #1d3557;
 }
 
 /* main wrapper */

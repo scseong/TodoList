@@ -1,10 +1,5 @@
 import React from 'react';
-import { IToDo, IToDoState } from './../typing/db';
-
-export const initialState = {
-  진행중: [] as IToDo[],
-  완료: [] as IToDo[],
-};
+import { IToDoState } from './../typing/db';
 
 export const toDosReducer = (state: IToDoState, action: any) => {
   const { type, payload } = action;

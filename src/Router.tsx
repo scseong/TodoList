@@ -1,7 +1,7 @@
 import React from 'react';
 import { createBrowserRouter } from 'react-router-dom';
-import ToDos from './components/ToDos';
 import Home from './pages/Home';
+import Board from './components/Board';
 
 export const router = createBrowserRouter([
   {
@@ -9,12 +9,14 @@ export const router = createBrowserRouter([
     element: <Home />,
     children: [
       {
-        path: 'active',
-        element: <ToDos />,
-      },
-      {
-        path: 'completed',
-        element: <ToDos />,
+        path: ':status',
+        element: <Board />,
+        children: [
+          {
+            path: ':status',
+            element: <Board />,
+          },
+        ],
       },
     ],
   },

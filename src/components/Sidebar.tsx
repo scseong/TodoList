@@ -2,27 +2,23 @@ import React, { useState } from 'react';
 import styles from './Sidebar.module.css';
 import { MdTaskAlt } from 'react-icons/md';
 import { RiTaskLine } from 'react-icons/ri';
-import { Link } from 'react-router-dom';
-import { useToDosState } from '../reducer/ToDosContext';
-import { ISidebarProps, IStatus, Status } from '../typing/db';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 
-const status: IStatus = { 진행중: '/', 완료: '/completed' };
+interface ISidebarProps {
+  lengthToDos: [key: string];
+}
 
-export default function Sidebar({ location }: ISidebarProps) {
-  const path = location.pathname;
-  const toDos = useToDosState();
-  const toDosKeys = Object.keys(toDos);
-  const [checked, setIsChecked] = useState(false);
+export default function Sidebar({ lengthToDos }: ISidebarProps) {
+  const location = useLocation();
+  const [isDark, setISDark] = useState(false);
   const toggleMode = () => {
-    setIsChecked((prev) => !prev);
+    setISDark((prev) => !prev);
   };
 
   return (
-    <aside className={styles['sidebar']}>
-      <div className={styles['sidebar-header']}>
-        <div
-          className={`${styles['sidebar-header__logo']} ${styles['drag-prevent']}`}
-        >
+    <aside className={styles.sidebar}>
+      <div className={styles.header}>
+        <div className={`${styles.logo} ${styles['drag-prevent']}`}>
           <Link to="/">
             <i>
               <MdTaskAlt />
@@ -30,12 +26,12 @@ export default function Sidebar({ location }: ISidebarProps) {
             <h1>투두리스트</h1>
           </Link>
         </div>
-        <div className={styles['theme-toggle']}>
+        <div className={styles.theme}>
           <input
             type="checkbox"
             id="toggle"
             hidden
-            checked={checked}
+            checked={isDark}
             onChange={toggleMode}
           />
           <label htmlFor="toggle">
@@ -43,30 +39,33 @@ export default function Sidebar({ location }: ISidebarProps) {
           </label>
         </div>
       </div>
-      <div className={styles['sidebar-menu']}>
-        <ul className={styles['sidebar-menu__list']}>
-          {toDosKeys?.map((toDoKey) => {
-            const matchLocation = path === status[toDoKey as Status];
-            return (
-              <li
-                key={toDoKey}
-                className={
-                  matchLocation
-                    ? styles['sidebar-menu__item-active']
-                    : styles['sidebar-menu__item']
-                }
+      <nav className={styles.nav}>
+        <ul className={styles.navList}>
+          <li className={styles.navIndex}>
+            <span>LISTS</span>
+          </li>
+          {Object.keys(lengthToDos).map((category, index) => (
+            <li key={category} className={styles.navItem}>
+              <NavLink
+                to={index === 0 ? '/inbox' : `/${category}`}
+                className={({ isActive }) => {
+                  if (location.pathname === '/' && index === 0)
+                    return styles.navItemActive;
+                  return isActive ? styles.navItemActive : undefined;
+                }}
               >
-                <Link to={status[toDoKey as Status]}>
+                <div>
                   <i>
                     <RiTaskLine />
                   </i>
-                  <span>{toDoKey}</span>
-                </Link>
-              </li>
-            );
-          })}
+                  <span>{category.toLocaleUpperCase()}</span>
+                  <span>{lengthToDos[category as never]}</span>
+                </div>
+              </NavLink>
+            </li>
+          ))}
         </ul>
-      </div>
+      </nav>
     </aside>
   );
 }
