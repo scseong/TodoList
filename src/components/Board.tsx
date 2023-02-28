@@ -5,18 +5,18 @@ import BoardNav from './BoardNav';
 import { useLocation } from 'react-router-dom';
 
 export default function Board() {
-  let location = useLocation();
+  const [, category = 'inbox', status = 'all'] = useLocation()
+    .pathname.split('/')
+    .map((str) => (str === '' ? 'inbox' : str));
 
   return (
     <main className={styles.board}>
       <div className={styles.header}>
-        <h2>
-          {location.pathname.split('/')[1].toLocaleUpperCase() || 'INBOX'}
-        </h2>
+        <h2>{category.toLocaleUpperCase() || 'INBOX'}</h2>
       </div>
       <div className={styles.container}>
-        <BoardNav category={location.pathname.split('/')[1]} />
-        {/* <ToDoList toDos={toDos} /> */}
+        <BoardNav category={category} />
+        <ToDoList category={category} status={status} />
       </div>
     </main>
   );

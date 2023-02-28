@@ -14,22 +14,19 @@ const ARR_KEY = {
   completed: 2,
 };
 
-export default function BoardNav({ category }: IBoardNavProps) {
+export default function BoardNav({ category = 'inbox' }: IBoardNavProps) {
   const toDos = useToDosState();
   const [lengthArr, setLengthArr] = useState<number[]>([]);
 
-  let firstKey = '';
-  for (firstKey in toDos) break;
-
   useEffect(() => {
     if (!toDos) return;
-    const toDosCount = toDos[category || firstKey].length;
-    const activeCount = toDos[category || firstKey]?.filter(
-      (toDo) => toDo.done === true,
+    const toDosCount = toDos[category].length;
+    const activeCount = toDos[category]?.filter(
+      (toDo) => toDo.done === false,
     ).length;
     const completedCount = toDosCount - activeCount || 0;
     setLengthArr([toDosCount, activeCount, completedCount]);
-  }, [toDos]);
+  }, [toDos, category]);
 
   return (
     <div className={styles.nav}>
@@ -48,7 +45,7 @@ export default function BoardNav({ category }: IBoardNavProps) {
         </li>
         <li className={styles.navItem}>
           <NavLink
-            to={`${category || firstKey}${MAPPING_URL.active}`}
+            to={`${category}${MAPPING_URL.active}`}
             className={({ isActive }) =>
               isActive ? styles.navItemActive : undefined
             }
@@ -59,7 +56,7 @@ export default function BoardNav({ category }: IBoardNavProps) {
         </li>
         <li className={styles.navItem}>
           <NavLink
-            to={`${category || firstKey}${MAPPING_URL.completed}`}
+            to={`${category}${MAPPING_URL.completed}`}
             className={({ isActive }) =>
               isActive ? styles.navItemActive : undefined
             }
