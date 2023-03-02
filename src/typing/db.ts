@@ -6,8 +6,8 @@ export type Tags = '';
 
 /* ToDos */
 export interface IToDo {
-  id: string;
-  createdBy: string;
+  id: number;
+  createdBy: number;
   description: string;
   category?: Categories;
   tags?: Tags;

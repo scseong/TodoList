@@ -1,6 +1,7 @@
 /* main wrapper */
 .wrapper {
   max-width: 50vw;
+  min-height: 60vh;
 }
 
 /* .toDos-wrapper__heading {
@@ -40,6 +41,8 @@
 
 .toDoItem span {
   flex: 1 1 0;
+  word-break: break-all;
+  overflow: hidden;
 }
 
 .toDoItem span ~ span {

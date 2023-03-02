@@ -63,12 +63,12 @@ export default function ToDoList({ category, status }: IToDoListProps) {
               <li className={styles.toDoItem} key={toDo.id}>
                 <input
                   type="checkbox"
-                  id={toDo.id}
-                  onChange={() => handleOnChange(toDo.id)}
+                  id={toDo.id + ''}
+                  onChange={() => handleOnChange(toDo.id + '')}
                   checked={selectedIds.has(toDo.id)}
                   hidden
                 />
-                <label htmlFor={toDo.id}></label>
+                <label htmlFor={toDo.id + ''}></label>
                 <span>{toDo.description}</span>
                 <span>
                   {new Date(toDo.createdBy).toLocaleDateString(
@@ -88,12 +88,12 @@ export default function ToDoList({ category, status }: IToDoListProps) {
               <li className={styles.toDoItem} key={toDo.id}>
                 <input
                   type="checkbox"
-                  id={toDo.id}
-                  onChange={() => handleOnChange(toDo.id)}
+                  id={toDo.id + ''}
+                  onChange={() => handleOnChange(toDo.id + '')}
                   checked={selectedIds.has(toDo.id)}
                   hidden
                 />
-                <label htmlFor={toDo.id}></label>
+                <label htmlFor={toDo.id + ''}></label>
                 <span>{toDo.description}</span>
                 <span>
                   {new Date(toDo.createdBy).toLocaleDateString(
