@@ -17,8 +17,8 @@ export default function Board() {
       </div>
       <div className={styles.container}>
         <BoardNav category={category} />
+        <CreateToDo category={category} />
         <ToDoList category={category} status={status} />
-        <CreateToDo />
       </div>
     </main>
   );

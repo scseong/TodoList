@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
-import { useToDosDispatch, useToDosState } from '../reducer/ToDosContext';
+import { useToDosDispatch } from '../reducer/ToDosContext';
+import styles from './CreateToDo.module.css';
+import { BsListTask } from 'react-icons/bs';
 
-export default function CreateToDo() {
-  const toDos = useToDosState();
-  const toDoCategory = Object.keys(toDos);
+interface ICreateToDoProps {
+  category: string;
+}
+
+export default function CreateToDo({ category }: ICreateToDoProps) {
   const [task, setTask] = useState('');
-  const [category, setCategory] = useState('inbox');
 
   const dispatch = useToDosDispatch();
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -21,41 +24,28 @@ export default function CreateToDo() {
       category,
       payload: { id, description, done, createdBy },
     });
+
+    setTask('');
   };
 
-  //React.ChangeEvent<HTMLInputElement>
-  const onChange = (e: any) => {
-    const { name, value } = e.target;
-    switch (name) {
-      case 'category':
-        setCategory(value);
-        break;
-      case 'task':
-        setTask(value);
-        break;
-      default:
-        console.error('error');
-    }
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    setTask(value);
   };
 
   return (
-    <form onSubmit={onSubmit}>
-      <input
-        name="task"
-        value={task}
-        onChange={onChange}
-        type="text"
-        placeholder="Add a Task"
-      />
-
-      <select name="category" id="" value={category} onChange={onChange}>
-        {toDoCategory.map((category) => (
-          <option key={category} value={category}>
-            {category}
-          </option>
-        ))}
-      </select>
-      <button>Click</button>
+    <form className={styles.todoForm} onSubmit={onSubmit}>
+      <div className={styles.todoBox}>
+        <BsListTask />
+        <input
+          name="task"
+          value={task}
+          onChange={onChange}
+          type="text"
+          placeholder="할 일 추가"
+          required
+        />
+      </div>
     </form>
   );
 }

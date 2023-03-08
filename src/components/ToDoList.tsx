@@ -46,12 +46,11 @@ export default function ToDoList({ category, status }: IToDoListProps) {
   useEffect(() => {
     const newSelectedIds = new Set();
     const completedToDosIds = toDos[category]?.map((toDo) => {
-      if (toDo.done === false) return;
-      return toDo.id;
+      if (toDo.done === true) return toDo.id + '';
     });
-    completedToDosIds?.map((id) => newSelectedIds.add(id));
+    completedToDosIds.filter((e) => e)?.map((id) => newSelectedIds.add(id));
     setSelectedIds(newSelectedIds);
-  }, []);
+  }, [category]);
 
   return (
     <div className={styles.wrapper}>
@@ -65,7 +64,7 @@ export default function ToDoList({ category, status }: IToDoListProps) {
                   type="checkbox"
                   id={toDo.id + ''}
                   onChange={() => handleOnChange(toDo.id + '')}
-                  checked={selectedIds.has(toDo.id)}
+                  checked={selectedIds.has(toDo.id + '')}
                   hidden
                 />
                 <label htmlFor={toDo.id + ''}></label>
@@ -90,7 +89,7 @@ export default function ToDoList({ category, status }: IToDoListProps) {
                   type="checkbox"
                   id={toDo.id + ''}
                   onChange={() => handleOnChange(toDo.id + '')}
-                  checked={selectedIds.has(toDo.id)}
+                  checked={selectedIds.has(toDo.id + '')}
                   hidden
                 />
                 <label htmlFor={toDo.id + ''}></label>
