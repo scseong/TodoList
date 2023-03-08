@@ -1,9 +1,16 @@
-import React, { Dispatch, useContext, createContext, useReducer } from 'react';
+import React, {
+  Dispatch,
+  useContext,
+  createContext,
+  useReducer,
+  useEffect,
+} from 'react';
+import { useLocalStorage } from '../hooks/useLocalStorage';
 import { IToDo, IToDoState } from '../typing/db';
 import { toDosReducer } from './toDosReducer';
 
 type Action =
-  | { type: 'ADD_TODO' }
+  | { type: 'ADD_TODO'; payload?: IToDo; category?: string }
   | { type: 'REMOVE_TODO' }
   | { type: 'UPDATE_TODO' };
 
@@ -27,6 +34,11 @@ export const ToDosDispatchContext = createContext<ToDosDispatch | null>(null);
 
 export const ToDosProvider = ({ children }: IChildren) => {
   const [toDos, dispatch] = useReducer(toDosReducer, initialState, initializer);
+  const [, setValue] = useLocalStorage('toDos', {});
+
+  useEffect(() => {
+    setValue(toDos);
+  }, [toDos]);
 
   return (
     <ToDosStateContext.Provider value={toDos}>

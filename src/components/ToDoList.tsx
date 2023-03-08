@@ -46,12 +46,11 @@ export default function ToDoList({ category, status }: IToDoListProps) {
   useEffect(() => {
     const newSelectedIds = new Set();
     const completedToDosIds = toDos[category]?.map((toDo) => {
-      if (toDo.done === false) return;
-      return toDo.id;
+      if (toDo.done === true) return toDo.id + '';
     });
-    completedToDosIds?.map((id) => newSelectedIds.add(id));
+    completedToDosIds.filter((e) => e)?.map((id) => newSelectedIds.add(id));
     setSelectedIds(newSelectedIds);
-  }, []);
+  }, [category]);
 
   return (
     <div className={styles.wrapper}>
@@ -63,12 +62,12 @@ export default function ToDoList({ category, status }: IToDoListProps) {
               <li className={styles.toDoItem} key={toDo.id}>
                 <input
                   type="checkbox"
-                  id={toDo.id}
-                  onChange={() => handleOnChange(toDo.id)}
-                  checked={selectedIds.has(toDo.id)}
+                  id={toDo.id + ''}
+                  onChange={() => handleOnChange(toDo.id + '')}
+                  checked={selectedIds.has(toDo.id + '')}
                   hidden
                 />
-                <label htmlFor={toDo.id}></label>
+                <label htmlFor={toDo.id + ''}></label>
                 <span>{toDo.description}</span>
                 <span>
                   {new Date(toDo.createdBy).toLocaleDateString(
@@ -88,12 +87,12 @@ export default function ToDoList({ category, status }: IToDoListProps) {
               <li className={styles.toDoItem} key={toDo.id}>
                 <input
                   type="checkbox"
-                  id={toDo.id}
-                  onChange={() => handleOnChange(toDo.id)}
-                  checked={selectedIds.has(toDo.id)}
+                  id={toDo.id + ''}
+                  onChange={() => handleOnChange(toDo.id + '')}
+                  checked={selectedIds.has(toDo.id + '')}
                   hidden
                 />
-                <label htmlFor={toDo.id}></label>
+                <label htmlFor={toDo.id + ''}></label>
                 <span>{toDo.description}</span>
                 <span>
                   {new Date(toDo.createdBy).toLocaleDateString(

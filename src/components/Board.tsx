@@ -3,6 +3,7 @@ import styles from './Board.module.css';
 import ToDoList from './ToDoList';
 import BoardNav from './BoardNav';
 import { useLocation } from 'react-router-dom';
+import CreateToDo from './CreateToDo';
 
 export default function Board() {
   const [, category = 'inbox', status = 'all'] = useLocation()
@@ -16,6 +17,7 @@ export default function Board() {
       </div>
       <div className={styles.container}>
         <BoardNav category={category} />
+        <CreateToDo category={category} />
         <ToDoList category={category} status={status} />
       </div>
     </main>
