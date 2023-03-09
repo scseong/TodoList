@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useToDosState } from '../reducer/ToDosContext';
+import { useToDosDispatch, useToDosState } from '../reducer/ToDosContext';
 import { IToDoState, DATE_FORMAT_OPTIONS, Status, IToDo } from '../typing/db';
 import styles from './ToDoList.module.css';
 
@@ -20,27 +20,18 @@ interface IToDoListProps {
 
 export default function ToDoList({ category, status }: IToDoListProps) {
   const toDos = useToDosState();
+  const dispatch = useToDosDispatch();
   const [selectedIds, setSelectedIds] = useState(new Set());
   const handleOnChange = (id: string) => {
     const updateIdToSelected = new Set(selectedIds);
     if (updateIdToSelected.has(id)) {
       updateIdToSelected.delete(id);
+      dispatch({ type: 'UPDATE_TODO', id: Number(id), category });
     } else {
       updateIdToSelected.add(id);
+      dispatch({ type: 'UPDATE_TODO', id: Number(id), category });
     }
     setSelectedIds(updateIdToSelected);
-  };
-  const filterToDo = (toDos: IToDo[], status: string) => {
-    switch (ARR_KEY[status as never]) {
-      case 'ALL':
-        return toDos;
-      case 'ACTIVE':
-        return toDos.filter((toDo) => toDo.done === false);
-      case 'COMPLETED':
-        return toDos.filter((toDo) => toDo.done === true);
-      default:
-        console.error('error');
-    }
   };
 
   useEffect(() => {
@@ -104,29 +95,6 @@ export default function ToDoList({ category, status }: IToDoListProps) {
             ))}
         </ul>
       )}
-
-      {/* <div className={styles.toDos}>
-              <h3>{toDo.}</h3>
-              {toDos[toDoKey as Status].map((toDo) => (
-                <li key={toDo.id} className={styles.toDoItem}>
-                  <input
-                    type="checkbox"
-                    id={toDo.id}
-                    onChange={() => handleOnChange(toDo.id)}
-                    checked={selectedIds.has(toDo.id)}
-                    hidden
-                  />
-                  <label htmlFor={toDo.id}></label>
-                  <span>{toDo.description}</span>
-                  <span>
-                    {new Date(toDo.createdBy).toLocaleDateString(
-                      'ko-KR',
-                      DATE_FORMAT_OPTIONS,
-                    )}
-                  </span>
-                </li>
-              ))}
-            </div> */}
     </div>
   );
 }

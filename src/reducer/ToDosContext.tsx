@@ -10,9 +10,9 @@ import { IToDo, IToDoState } from '../typing/db';
 import { toDosReducer } from './toDosReducer';
 
 type Action =
-  | { type: 'ADD_TODO'; payload?: IToDo; category?: string }
-  | { type: 'REMOVE_TODO' }
-  | { type: 'UPDATE_TODO' };
+  | { type: 'ADD_TODO'; payload: IToDo; category: string }
+  | { type: 'REMOVE_TODO'; id?: string; category?: string }
+  | { type: 'UPDATE_TODO'; id?: number; category?: string };
 
 type ToDosDispatch = Dispatch<Action>;
 
