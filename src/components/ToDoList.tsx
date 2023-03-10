@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useToDosDispatch, useToDosState } from '../reducer/ToDosContext';
-import { IToDoState, DATE_FORMAT_OPTIONS, Status, IToDo } from '../typing/db';
+import { DATE_FORMAT_OPTIONS } from '../typing/db';
+import { BsTrashFill, BsPencilSquare } from 'react-icons/bs';
 import styles from './ToDoList.module.css';
 
+import { RiTaskLine } from 'react-icons/ri';
 interface IToDoListProps {
   category: string;
 }
@@ -32,6 +34,20 @@ export default function ToDoList({ category, status }: IToDoListProps) {
       dispatch({ type: 'UPDATE_TODO', id: Number(id), category });
     }
     setSelectedIds(updateIdToSelected);
+  };
+  const handleEdit = (
+    e: React.MouseEvent<SVGElement, MouseEvent>,
+    id: number,
+  ) => {
+    console.log(e, id);
+  };
+  const handleDelete = (
+    e: React.MouseEvent<SVGElement, MouseEvent>,
+    id: number,
+  ) => {
+    if (window.confirm('삭제하시겠습니까?')) {
+      dispatch({ type: 'REMOVE_TODO', id, category });
+    }
   };
 
   useEffect(() => {
@@ -66,6 +82,10 @@ export default function ToDoList({ category, status }: IToDoListProps) {
                     DATE_FORMAT_OPTIONS,
                   )}
                 </span>
+                <div className={styles.btnBox}>
+                  <BsPencilSquare onClick={(e) => handleEdit(e, toDo.id)} />
+                  <BsTrashFill onClick={(e) => handleDelete(e, toDo.id)} />
+                </div>
               </li>
             ))}
         </ul>
@@ -91,6 +111,10 @@ export default function ToDoList({ category, status }: IToDoListProps) {
                     DATE_FORMAT_OPTIONS,
                   )}
                 </span>
+                <div className={styles.btnBox}>
+                  <BsPencilSquare onClick={(e) => handleEdit(e, toDo.id)} />
+                  <BsTrashFill onClick={(e) => handleDelete(e, toDo.id)} />
+                </div>
               </li>
             ))}
         </ul>

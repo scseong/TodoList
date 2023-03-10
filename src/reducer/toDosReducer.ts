@@ -9,15 +9,19 @@ export const toDosReducer = (state: IToDoState, action: any) => {
       const newToDo = { ...state, [category]: [...state[category], payload] };
       return newToDo;
     case 'REMOVE_TODO':
-      return state;
+      const toDoCopy = [...state[category]];
+      const toDoObj = toDoCopy.filter((toDo) => toDo.id !== id);
+      return {
+        ...state,
+        [category]: [...toDoObj],
+      };
     case 'UPDATE_TODO':
       const oldToDo = state[category].filter((toDo) => toDo.id !== id);
       const targetToDo = state[category].filter((toDo) => toDo.id === id)[0];
-      const updatedToDo = {
+      return {
         ...state,
         [category]: [...oldToDo, { ...targetToDo, done: !targetToDo.done }],
       };
-      return updatedToDo;
     default:
       throw new Error(`No case for type ${type} found.`);
   }

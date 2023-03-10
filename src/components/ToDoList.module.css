@@ -4,18 +4,6 @@
   min-height: 60vh;
 }
 
-/* .toDos-wrapper__heading {
-  margin-bottom: 1rem;
-}
-
-.toDos-wrapper__heading h3 {
-  font-size: 1.5rem;
-} */
-
-/* .toDos {
-  margin-bottom: 1rem;
-} */
-
 .toDoItem {
   display: flex;
   justify-content: space-between;
@@ -73,4 +61,12 @@
   border-left: 2px solid #03045e;
   border-bottom: 2px solid #03045e;
   transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.btnBox svg {
+  cursor: pointer;
+}
+
+.btnBox svg:last-child {
+  margin-left: 0.4rem;
 }
