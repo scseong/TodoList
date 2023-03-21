@@ -28,10 +28,10 @@ export default function ToDoList({ category, status }: IToDoListProps) {
     const updateIdToSelected = new Set(selectedIds);
     if (updateIdToSelected.has(id)) {
       updateIdToSelected.delete(id);
-      dispatch({ type: 'UPDATE_TODO', id: Number(id), category });
+      dispatch({ type: 'TOGGLE_TODO', id: Number(id), category });
     } else {
       updateIdToSelected.add(id);
-      dispatch({ type: 'UPDATE_TODO', id: Number(id), category });
+      dispatch({ type: 'TOGGLE_TODO', id: Number(id), category });
     }
     setSelectedIds(updateIdToSelected);
   };
@@ -39,7 +39,9 @@ export default function ToDoList({ category, status }: IToDoListProps) {
     e: React.MouseEvent<SVGElement, MouseEvent>,
     id: number,
   ) => {
-    console.log(e, id);
+    const text = window.prompt('변경할 문구를 입력해주세요.');
+    if (!text) return;
+    dispatch({ type: 'UPDATE_TODO', id, text, category });
   };
   const handleDelete = (
     e: React.MouseEvent<SVGElement, MouseEvent>,

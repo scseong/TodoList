@@ -12,7 +12,13 @@ import { toDosReducer } from './toDosReducer';
 type Action =
   | { type: 'ADD_TODO'; payload: IToDo; category: string }
   | { type: 'REMOVE_TODO'; id?: number; category?: string }
-  | { type: 'UPDATE_TODO'; id?: number; category?: string };
+  | { type: 'TOGGLE_TODO'; id?: number; category?: string }
+  | {
+      type: 'UPDATE_TODO';
+      text: string | null;
+      id?: number;
+      category?: string;
+    };
 
 type ToDosDispatch = Dispatch<Action>;
 
