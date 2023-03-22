@@ -1,0 +1,81 @@
+.toDoItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.4rem;
+}
+
+.toDoItem input {
+  flex: 0 1 0;
+}
+
+.toDoItem label {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+}
+
+.toDoItem span,
+.toDoItem input {
+  flex: 1 1 0;
+  word-break: break-all;
+  overflow: hidden;
+}
+
+.toDoItem span ~ span {
+  flex: 0 0 auto;
+}
+
+/* checkbox */
+.toDoItem input {
+  cursor: pointer;
+}
+.toDoItem label {
+  position: relative;
+  display: block;
+  width: 20px;
+  height: 20px;
+  background: #e9f8f9;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.toDoItem input:checked ~ label::after {
+  content: '';
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  width: 9px;
+  height: 4px;
+  border-left: 2px solid #03045e;
+  border-bottom: 2px solid #03045e;
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.toDoItem input:checked ~ span {
+  text-decoration-line: line-through;
+  opacity: 0.6;
+}
+
+.btnBox button {
+  width: fit-content;
+  height: fit-content;
+  padding: 0 0.3rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.btnBox button svg {
+  z-index: -9999;
+}
+
+.btnBox button:hover svg {
+  fill: var(--main-text-hover);
+}
