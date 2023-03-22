@@ -1,19 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useToDosDispatch, useToDosState } from '../reducer/ToDosContext';
-import { DATE_FORMAT_OPTIONS } from '../typing/db';
-import { BsTrashFill, BsPencilSquare } from 'react-icons/bs';
+import ToDo from './ToDo';
 import styles from './ToDoList.module.css';
-
-import { RiTaskLine } from 'react-icons/ri';
-interface IToDoListProps {
-  category: string;
-}
-
-const ARR_KEY = {
-  all: 'ALL',
-  active: 'ACTIVE',
-  completed: 'COMPLETED',
-};
 
 interface IToDoListProps {
   category: string;
@@ -23,8 +11,9 @@ interface IToDoListProps {
 export default function ToDoList({ category, status }: IToDoListProps) {
   const toDos = useToDosState();
   const dispatch = useToDosDispatch();
-  const [selectedIds, setSelectedIds] = useState(new Set());
-  const handleOnChange = (id: string) => {
+  const [selectedIds, setSelectedIds] = useState(new Set<number>());
+
+  const handleToggle = (id: number) => {
     const updateIdToSelected = new Set(selectedIds);
     if (updateIdToSelected.has(id)) {
       updateIdToSelected.delete(id);
@@ -35,29 +24,23 @@ export default function ToDoList({ category, status }: IToDoListProps) {
     }
     setSelectedIds(updateIdToSelected);
   };
-  const handleEdit = (
-    e: React.MouseEvent<SVGElement, MouseEvent>,
-    id: number,
-  ) => {
+  const handleEdit = (id: number) => {
     const text = window.prompt('변경할 문구를 입력해주세요.');
     if (!text) return;
     dispatch({ type: 'UPDATE_TODO', id, text, category });
   };
-  const handleDelete = (
-    e: React.MouseEvent<SVGElement, MouseEvent>,
-    id: number,
-  ) => {
+  const handleDelete = (id: number) => {
     if (window.confirm('삭제하시겠습니까?')) {
       dispatch({ type: 'REMOVE_TODO', id, category });
     }
   };
 
   useEffect(() => {
-    const newSelectedIds = new Set();
-    const completedToDosIds = toDos[category]?.map((toDo) => {
-      if (toDo.done === true) return toDo.id + '';
-    });
-    completedToDosIds.filter((e) => e)?.map((id) => newSelectedIds.add(id));
+    const newSelectedIds = new Set<number>();
+    const completedToDosIds = toDos[category]?.filter(
+      (toDo) => toDo.done === true,
+    );
+    completedToDosIds.map((toDo) => newSelectedIds.add(toDo.id));
     setSelectedIds(newSelectedIds);
   }, [category]);
 
@@ -68,27 +51,14 @@ export default function ToDoList({ category, status }: IToDoListProps) {
           {toDos[category]
             .filter((toDo) => toDo.done === false)
             .map((toDo) => (
-              <li className={styles.toDoItem} key={toDo.id}>
-                <input
-                  type="checkbox"
-                  id={toDo.id + ''}
-                  onChange={() => handleOnChange(toDo.id + '')}
-                  checked={selectedIds.has(toDo.id + '')}
-                  hidden
-                />
-                <label htmlFor={toDo.id + ''}></label>
-                <span>{toDo.description}</span>
-                <span>
-                  {new Date(toDo.createdBy).toLocaleDateString(
-                    'ko-KR',
-                    DATE_FORMAT_OPTIONS,
-                  )}
-                </span>
-                <div className={styles.btnBox}>
-                  <BsPencilSquare onClick={(e) => handleEdit(e, toDo.id)} />
-                  <BsTrashFill onClick={(e) => handleDelete(e, toDo.id)} />
-                </div>
-              </li>
+              <ToDo
+                key={toDo.id}
+                selectedIds={selectedIds}
+                onToggle={handleToggle}
+                onEdit={handleEdit}
+                onDelete={handleDelete}
+                toDo={toDo}
+              />
             ))}
         </ul>
       )}
@@ -97,27 +67,14 @@ export default function ToDoList({ category, status }: IToDoListProps) {
           {toDos[category]
             .filter((toDo) => toDo.done === true)
             .map((toDo) => (
-              <li className={styles.toDoItem} key={toDo.id}>
-                <input
-                  type="checkbox"
-                  id={toDo.id + ''}
-                  onChange={() => handleOnChange(toDo.id + '')}
-                  checked={selectedIds.has(toDo.id + '')}
-                  hidden
-                />
-                <label htmlFor={toDo.id + ''}></label>
-                <span>{toDo.description}</span>
-                <span>
-                  {new Date(toDo.createdBy).toLocaleDateString(
-                    'ko-KR',
-                    DATE_FORMAT_OPTIONS,
-                  )}
-                </span>
-                <div className={styles.btnBox}>
-                  <BsPencilSquare onClick={(e) => handleEdit(e, toDo.id)} />
-                  <BsTrashFill onClick={(e) => handleDelete(e, toDo.id)} />
-                </div>
-              </li>
+              <ToDo
+                key={toDo.id}
+                selectedIds={selectedIds}
+                onToggle={handleToggle}
+                onEdit={handleEdit}
+                onDelete={handleDelete}
+                toDo={toDo}
+              />
             ))}
         </ul>
       )}
