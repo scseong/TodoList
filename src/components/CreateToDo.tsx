@@ -13,7 +13,6 @@ export default function CreateToDo({ category }: ICreateToDoProps) {
   const dispatch = useToDosDispatch();
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (task.trim().length === 0) return;
 
     const id = Date.now();
     const description = task;
@@ -44,6 +43,7 @@ export default function CreateToDo({ category }: ICreateToDoProps) {
           onChange={onChange}
           type="text"
           placeholder="할 일 추가"
+          required
         />
       </div>
     </form>
