@@ -3,7 +3,6 @@ import styles from './Sidebar.module.css';
 import { MdTaskAlt } from 'react-icons/md';
 import { RiTaskLine } from 'react-icons/ri';
 import { Link, NavLink } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
 
 interface IToDosInfoProps {
   name: string;
@@ -13,10 +12,10 @@ interface IToDosInfoProps {
 
 interface ISidebarProps {
   toDosInfo: IToDosInfoProps[];
-  pathname: string;
+  category: string;
 }
 
-export default function Sidebar({ toDosInfo, pathname }: ISidebarProps) {
+export default function Sidebar({ toDosInfo, category }: ISidebarProps) {
   const [isDark, setISDark] = useState(false);
   const toggleMode = () => {
     setISDark((prev) => !prev);
@@ -57,10 +56,7 @@ export default function Sidebar({ toDosInfo, pathname }: ISidebarProps) {
                 <NavLink
                   to={toDosInfo[todo as never].path}
                   className={({ isActive }) => {
-                    if (
-                      `/${toDosInfo[todo as never].name}` === pathname ||
-                      pathname.split('/')[1] === toDosInfo[todo as never].name
-                    )
+                    if (toDosInfo[todo as never].name === category)
                       return styles.navItemActive;
                     return isActive ? styles.navItemActive : undefined;
                   }}

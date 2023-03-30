@@ -10,11 +10,11 @@ export const router = createBrowserRouter([
     children: [
       {
         path: ':status',
-        element: <Board />,
+        element: <Board category="" filters={['']} filter="all" />,
         children: [
           {
             path: ':status',
-            element: <Board />,
+            element: <Board category="" filters={['']} filter="all" />,
           },
         ],
       },

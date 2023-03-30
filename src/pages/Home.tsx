@@ -4,10 +4,9 @@ import Board from '../components/Board';
 import { useToDosState } from '../reducer/ToDosContext';
 import { useLocation } from 'react-router';
 
-const filters = ['전체', '진행중', '완료'];
+const filters = ['all', 'active', 'completed'];
 
 export default function Home() {
-  const pathname = useLocation().pathname;
   const toDos = useToDosState();
   const toDosKeys = Object.keys(toDos);
   const toDosInfo = Object.assign([
@@ -17,11 +16,17 @@ export default function Home() {
       length: toDos[key].length,
     })),
   ]);
+  const pathname = useLocation().pathname;
+
+  const [category = toDosKeys[0], filter = 'all'] = [
+    pathname.split('/')[1] === '' ? toDosKeys[0] : pathname.split('/')[1],
+    pathname.split('/')[2] ?? pathname.split('/')[2],
+  ];
 
   return (
     <>
-      <Sidebar toDosInfo={toDosInfo} pathname={pathname} />
-      <Board />
+      <Sidebar toDosInfo={toDosInfo} category={category} />
+      <Board category={category} filter={filter} filters={filters} />
     </>
   );
 }
