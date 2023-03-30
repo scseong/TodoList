@@ -5,10 +5,10 @@ import styles from './ToDoList.module.css';
 
 interface IToDoListProps {
   category: string;
-  status: string;
+  filter: string;
 }
 
-export default function ToDoList({ category, status }: IToDoListProps) {
+export default function ToDoList({ category, filter }: IToDoListProps) {
   const toDos = useToDosState();
   const dispatch = useToDosDispatch();
   const [selectedIds, setSelectedIds] = useState(new Set<number>());
@@ -46,7 +46,7 @@ export default function ToDoList({ category, status }: IToDoListProps) {
 
   return (
     <div className={styles.wrapper}>
-      {(status === 'all' || status === 'active') && (
+      {(filter === 'all' || filter === 'active') && (
         <ul className={styles.toDos}>
           {toDos[category]
             .filter((toDo) => toDo.done === false)
@@ -62,7 +62,7 @@ export default function ToDoList({ category, status }: IToDoListProps) {
             ))}
         </ul>
       )}
-      {(status === 'all' || status === 'completed') && (
+      {(filter === 'all' || filter === 'completed') && (
         <ul>
           {toDos[category]
             .filter((toDo) => toDo.done === true)

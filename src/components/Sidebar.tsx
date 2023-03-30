@@ -2,14 +2,20 @@ import React, { useState } from 'react';
 import styles from './Sidebar.module.css';
 import { MdTaskAlt } from 'react-icons/md';
 import { RiTaskLine } from 'react-icons/ri';
-import { Link, NavLink, useLocation } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
-interface ISidebarProps {
-  lengthToDos: [key: string];
+interface IToDosInfoProps {
+  name: string;
+  path: string;
+  length: number;
 }
 
-export default function Sidebar({ lengthToDos }: ISidebarProps) {
-  const location = useLocation();
+interface ISidebarProps {
+  toDosInfo: IToDosInfoProps[];
+  category: string;
+}
+
+export default function Sidebar({ toDosInfo, category }: ISidebarProps) {
   const [isDark, setISDark] = useState(false);
   const toggleMode = () => {
     setISDark((prev) => !prev);
@@ -44,26 +50,30 @@ export default function Sidebar({ lengthToDos }: ISidebarProps) {
           <li className={styles.navIndex}>
             <span>LISTS</span>
           </li>
-          {Object.keys(lengthToDos).map((category, index) => (
-            <li key={category} className={styles.navItem}>
-              <NavLink
-                to={index === 0 ? '/inbox' : `/${category}`}
-                className={({ isActive }) => {
-                  if (location.pathname === '/' && index === 0)
-                    return styles.navItemActive;
-                  return isActive ? styles.navItemActive : undefined;
-                }}
-              >
-                <div>
-                  <i>
-                    <RiTaskLine />
-                  </i>
-                  <span>{category.toLocaleUpperCase()}</span>
-                  <span>{lengthToDos[category as never]}</span>
-                </div>
-              </NavLink>
-            </li>
-          ))}
+          <>
+            {Object.keys(toDosInfo).map((todo, index) => (
+              <li key={index} className={styles.navItem}>
+                <NavLink
+                  to={toDosInfo[todo as never].path}
+                  className={({ isActive }) => {
+                    if (toDosInfo[todo as never].name === category)
+                      return styles.navItemActive;
+                    return isActive ? styles.navItemActive : undefined;
+                  }}
+                >
+                  <div>
+                    <i>
+                      <RiTaskLine />
+                    </i>
+                    <span>
+                      {toDosInfo[todo as never].name.toLocaleUpperCase()}
+                    </span>
+                    <span>{toDosInfo[todo as never].length}</span>
+                  </div>
+                </NavLink>
+              </li>
+            ))}
+          </>
         </ul>
       </nav>
     </aside>

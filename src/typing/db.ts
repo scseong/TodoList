@@ -27,9 +27,9 @@ export type IStatus = {
 
 // Mapping
 export const MAPPING_URL = {
-  all: '/',
-  active: '/active',
-  completed: '/completed',
+  전체: '/all',
+  진행중: '/active',
+  완료: '/completed',
 };
 
 export const MAPPING_NAME = {
