@@ -3,10 +3,9 @@
   margin-bottom: 1rem;
 }
 
-/* main nav in contnets */
 .nav ul {
   display: flex;
-  border-bottom: 2px solid #000;
+  border-bottom: 2px solid var(--color-black);
 }
 
 .navItem {
@@ -17,7 +16,7 @@
 }
 
 .navItem:hover {
-  color: #5076e7;
+  color: var(--color-text-hover);
 }
 
 .navItem a {
@@ -26,7 +25,7 @@
 }
 
 .navItemActive {
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid var(--color-black);
 }
 
 .count {

@@ -16,13 +16,11 @@
   justify-content: center;
   width: 20px;
   height: 20px;
-  background-color: #000;
   text-align: center;
   cursor: pointer;
 }
 
-.toDoItem span,
-.toDoItem input {
+.toDoItem span {
   flex: 1 1 0;
   word-break: break-all;
   overflow: hidden;
@@ -30,6 +28,7 @@
 
 .toDoItem span ~ span {
   flex: 0 0 auto;
+  letter-spacing: 0;
 }
 
 /* checkbox */
@@ -41,7 +40,7 @@
   display: block;
   width: 20px;
   height: 20px;
-  background: #e9f8f9;
+  background: var(--color-white);
   border-radius: 10px;
   cursor: pointer;
 }
@@ -53,8 +52,8 @@
   left: 50%;
   width: 9px;
   height: 4px;
-  border-left: 2px solid #03045e;
-  border-bottom: 2px solid #03045e;
+  border-left: 2px solid var(--color-text);
+  border-bottom: 2px solid var(--color-text);
   transform: translate(-50%, -50%) rotate(-45deg);
 }
 
@@ -64,18 +63,10 @@
 }
 
 .btnBox button {
-  width: fit-content;
-  height: fit-content;
   padding: 0 0.3rem;
-  background: none;
-  border: none;
   cursor: pointer;
 }
 
-.btnBox button svg {
-  z-index: -9999;
-}
-
 .btnBox button:hover svg {
-  fill: var(--main-text-hover);
+  fill: var(--color-text-hover);
 }

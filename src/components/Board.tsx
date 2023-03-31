@@ -14,7 +14,7 @@ export default function Board({ filters, filter, category }: IBoardProps) {
   return (
     <main className={styles.board}>
       <div className={styles.header}>
-        <h2>{category.toLocaleUpperCase()}</h2>
+        <h2>{category}</h2>
       </div>
       <div className={styles.container}>
         <BoardNav category={category} filters={filters} filter={filter} />

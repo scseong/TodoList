@@ -50,6 +50,10 @@ a {
 input {
 	font-family: 'Jua', sans-serif;
 }
+button {
+	background-color: inherit;
+	border: none;
+}
 * {
     box-sizing: border-box;
 }
@@ -57,3 +61,15 @@ input {
 	display: grid;
 	grid-template-columns: auto 1fr;
 }
+:root {
+	--color-black: #000;
+	--color-white: #fff;
+	--color-bg: #caf0f8;
+	--color-bg-darker: #acf0fd;
+	--color-bg-nav-hover: #f1f4ff;
+	--color-bg-actived: #435ebe;
+	--color-text: #03045e;
+	--color-text-hover: #5595fc;
+	--color-nav-badge: #fff;
+}
+/* https://coolors.co/03045e-023e8a-0077b6-0096c7-00b4d8-48cae4-90e0ef-ade8f4-caf0f8 */

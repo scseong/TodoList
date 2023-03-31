@@ -6,7 +6,7 @@
   display: flex;
   align-items: center;
   padding: 0 0.6rem;
-  background-color: #acf0fd;
+  background-color: var(--color-bg-darker);
   border-radius: 0.6rem;
   transition: outline-color 1s ease-in-out;
 }
@@ -28,18 +28,16 @@
 }
 
 .todoBox:has(input:focus) {
-  outline: 2px solid var(--main-text);
+  outline: 2px solid var(--color-text);
 }
 
 .todoBox input::placeholder {
-  color: var(--main-text);
+  color: var(--color-text);
 }
 
 .todoBox button {
   margin: 0;
   padding: 0;
-  background-color: inherit;
-  border: none;
   cursor: pointer;
   transition: transform 0.3s linear;
 }
