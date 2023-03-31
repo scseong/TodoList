@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { NavLink, Location } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useToDosState } from '../reducer/ToDosContext';
-import { MAPPING_NAME, MAPPING_URL } from '../typing/db';
+import { MAPPING_NAME } from '../typing/db';
 import styles from './BoardNav.module.css';
 
 interface IBoardNavProps {
