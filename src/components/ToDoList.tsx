@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useToDosDispatch, useToDosState } from '../reducer/ToDosContext';
+import { IToDoState } from '../typing/db';
 import ToDo from './ToDo';
 import styles from './ToDoList.module.css';
 
@@ -8,20 +9,27 @@ interface IToDoListProps {
   filter: string;
 }
 
+function getFilteredItems(todos: IToDoState, filter: string, category: string) {
+  if (filter === 'all') return todos[category].sort((a, b) => b.id - a.id);
+  else if (filter === 'active')
+    return todos[category].filter((todo) => todo.done === false);
+  else return todos[category].filter((todo) => todo.done === true);
+}
+
 export default function ToDoList({ category, filter }: IToDoListProps) {
   const toDos = useToDosState();
   const dispatch = useToDosDispatch();
   const [selectedIds, setSelectedIds] = useState(new Set<number>());
+  const filtered = getFilteredItems(toDos, filter, category);
 
   const handleToggle = (id: number) => {
     const updateIdToSelected = new Set(selectedIds);
     if (updateIdToSelected.has(id)) {
       updateIdToSelected.delete(id);
-      dispatch({ type: 'TOGGLE_TODO', id: Number(id), category });
     } else {
       updateIdToSelected.add(id);
-      dispatch({ type: 'TOGGLE_TODO', id: Number(id), category });
     }
+    dispatch({ type: 'TOGGLE_TODO', id: Number(id), category });
     setSelectedIds(updateIdToSelected);
   };
   const handleEdit = (id: number) => {
@@ -42,42 +50,22 @@ export default function ToDoList({ category, filter }: IToDoListProps) {
     );
     completedToDosIds.map((toDo) => newSelectedIds.add(toDo.id));
     setSelectedIds(newSelectedIds);
-  }, [category]);
+  }, []);
 
   return (
     <div className={styles.wrapper}>
-      {(filter === 'all' || filter === 'active') && (
-        <ul className={styles.toDos}>
-          {toDos[category]
-            .filter((toDo) => toDo.done === false)
-            .map((toDo) => (
-              <ToDo
-                key={toDo.id}
-                selectedIds={selectedIds}
-                onToggle={handleToggle}
-                onEdit={handleEdit}
-                onDelete={handleDelete}
-                toDo={toDo}
-              />
-            ))}
-        </ul>
-      )}
-      {(filter === 'all' || filter === 'completed') && (
-        <ul>
-          {toDos[category]
-            .filter((toDo) => toDo.done === true)
-            .map((toDo) => (
-              <ToDo
-                key={toDo.id}
-                selectedIds={selectedIds}
-                onToggle={handleToggle}
-                onEdit={handleEdit}
-                onDelete={handleDelete}
-                toDo={toDo}
-              />
-            ))}
-        </ul>
-      )}
+      <ul className={styles.toDos}>
+        {filtered.map((toDo) => (
+          <ToDo
+            key={toDo.id}
+            selectedIds={selectedIds}
+            onToggle={handleToggle}
+            onEdit={handleEdit}
+            onDelete={handleDelete}
+            toDo={toDo}
+          />
+        ))}
+      </ul>
     </div>
   );
 }

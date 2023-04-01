@@ -5,16 +5,15 @@
 .todoBox {
   display: flex;
   align-items: center;
-  padding-left: 0.6rem;
-  background-color: #acf0fd;
+  padding: 0 0.6rem;
+  background-color: var(--color-bg-darker);
   border-radius: 0.6rem;
   transition: outline-color 1s ease-in-out;
 }
 
-.todoBox svg {
+.todoBox svg:first-child {
   width: 20px;
   height: 20px;
-  margin-right: 0.5rem;
   color: var(--main-text);
 }
 
@@ -29,9 +28,24 @@
 }
 
 .todoBox:has(input:focus) {
-  outline: 2px solid var(--main-text);
+  outline: 2px solid var(--color-text);
 }
 
 .todoBox input::placeholder {
-  color: var(--main-text);
+  color: var(--color-text);
+}
+
+.todoBox button {
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  transition: transform 0.3s linear;
+}
+
+.todoBox button:hover {
+  transform: scale(1.1);
+}
+
+.todoBox svg:last-child {
+  vertical-align: bottom;
 }

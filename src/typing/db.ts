@@ -1,41 +1,27 @@
-export type Status = 'active' | 'completed';
-export type Categories = '';
-export type Tags = '';
-
 /* ToDos */
 export interface IToDo {
   id: number;
   createdBy: number;
   description: string;
-  category?: Categories;
-  tags?: Tags;
   done: boolean;
+  tags?: string[];
 }
 
 export type IToDoState = {
   [key in string]: IToDo[];
 };
 
-export interface IToDoLengthState {
-  [key: string]: number;
-}
-
-//
-export type IStatus = {
-  [key in Status]: string;
-};
-
 // Mapping
-export const MAPPING_URL = {
-  전체: '/all',
-  진행중: '/active',
-  완료: '/completed',
-};
-
 export const MAPPING_NAME = {
   all: '전체',
   active: '진행중',
   completed: '완료',
+};
+
+export const MAPPING_URL = {
+  전체: '/all',
+  진행중: '/active',
+  완료: '/completed',
 };
 
 // Date
@@ -54,8 +40,9 @@ export const DATE_FORMAT_OPTIONS: DateTimeFormatOptions = {
 };
 
 // Context
-export const Action = {
+export const ACTION = {
   ADD: 'ADD_TODO',
   REMOVE: 'REMOVE_TODO',
+  TOGGLE: 'TOGGLE_TODO',
   UPDATE: 'UPDATE_TODO',
 };

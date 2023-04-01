@@ -1,24 +1,17 @@
-:root {
-  --main-bg: #caf0f8;
-  --main-text: #03045e;
-  --main-text-hover: #86b4fe;
-  --main-nav-badge: #fff;
-}
-/* https://coolors.co/03045e-023e8a-0077b6-0096c7-00b4d8-48cae4-90e0ef-ade8f4-caf0f8 */
-
 .board {
   padding: 3rem 2rem 2rem;
-  background-color: var(--main-bg);
-  color: var(--main-text);
+  background-color: var(--color-bg);
+  color: var(--color-text);
 }
 
 .header {
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 .header h2 {
   font-size: 2rem;
   line-height: 1.5;
+  text-transform: uppercase;
 }
 
 .container {

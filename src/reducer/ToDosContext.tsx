@@ -28,6 +28,7 @@ interface IChildren {
 
 export const initialState = {
   inbox: [] as IToDo[],
+  personal: [] as IToDo[],
 };
 
 export const initializer = (initialValue = {}) => {
