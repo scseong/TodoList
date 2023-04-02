@@ -46,3 +46,7 @@ export const ACTION = {
   TOGGLE: 'TOGGLE_TODO',
   UPDATE: 'UPDATE_TODO',
 };
+
+export interface IChildren {
+  children: React.ReactNode;
+}

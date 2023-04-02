@@ -6,7 +6,7 @@ import React, {
   useEffect,
 } from 'react';
 import { useLocalStorage } from '../hooks/useLocalStorage';
-import { IToDo, IToDoState } from '../typing/db';
+import { IChildren, IToDo, IToDoState } from '../typing/db';
 import { toDosReducer } from './toDosReducer';
 
 type Action =
@@ -21,10 +21,6 @@ type Action =
     };
 
 type ToDosDispatch = Dispatch<Action>;
-
-interface IChildren {
-  children: React.ReactNode;
-}
 
 export const initialState = {
   inbox: [] as IToDo[],

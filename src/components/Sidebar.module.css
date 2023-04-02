@@ -2,7 +2,7 @@
   width: 300px;
   height: 100vh;
   padding: 0;
-  background-color: var(--color-white);
+  background-color: var(--color-sidebar-bg);
   color: var(--color-text);
 }
 
@@ -54,7 +54,7 @@
 
 .navItemActive {
   background-color: var(--color-bg-actived);
-  color: var(--color-white);
+  color: var(--color-text-actived);
 }
 
 .navItem a,
@@ -118,7 +118,7 @@
 
 .theme input:checked ~ label span {
   left: calc(100% - 19px);
-  background: var(--color-white);
+  background: var(--color-accent);
 }
 
 /* common */

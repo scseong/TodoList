@@ -3,6 +3,7 @@ import Sidebar from '../components/Sidebar';
 import Board from '../components/Board';
 import { useToDosState } from '../reducer/ToDosContext';
 import { useLocation } from 'react-router';
+import { DarkModeContext, DarkModeProvider } from '../reducer/DarkModeContext';
 
 const filters = ['all', 'active', 'completed'];
 
@@ -24,9 +25,9 @@ export default function Home() {
   ];
 
   return (
-    <>
+    <DarkModeProvider>
       <Sidebar toDosInfo={toDosInfo} category={category} />
       <Board category={category} filter={filter} filters={filters} />
-    </>
+    </DarkModeProvider>
   );
 }

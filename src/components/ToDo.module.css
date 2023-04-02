@@ -67,6 +67,10 @@
   cursor: pointer;
 }
 
+.btnBox button svg {
+  fill: var(--color-text);
+}
+
 .btnBox button:hover svg {
   fill: var(--color-text-hover);
 }
