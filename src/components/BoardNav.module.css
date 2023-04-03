@@ -5,7 +5,7 @@
 
 .nav ul {
   display: flex;
-  border-bottom: 2px solid var(--color-black);
+  border-bottom: 2px solid var(--color-border);
 }
 
 .navItem {
@@ -25,7 +25,7 @@
 }
 
 .navItemActive {
-  border-bottom: 2px solid var(--color-black);
+  border-bottom: 2px solid var(--color-border);
 }
 
 .count {

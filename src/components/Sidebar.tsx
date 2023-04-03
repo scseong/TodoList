@@ -3,6 +3,7 @@ import styles from './Sidebar.module.css';
 import { MdTaskAlt } from 'react-icons/md';
 import { RiTaskLine } from 'react-icons/ri';
 import { Link, NavLink } from 'react-router-dom';
+import { useDarkMode } from '../reducer/DarkModeContext';
 
 interface IToDosInfoProps {
   name: string;
@@ -16,10 +17,7 @@ interface ISidebarProps {
 }
 
 export default function Sidebar({ toDosInfo, category }: ISidebarProps) {
-  const [isDark, setISDark] = useState(false);
-  const toggleMode = () => {
-    setISDark((prev) => !prev);
-  };
+  const { darkMode, toggleDarkMode } = useDarkMode();
 
   return (
     <aside className={styles.sidebar}>
@@ -37,8 +35,8 @@ export default function Sidebar({ toDosInfo, category }: ISidebarProps) {
             type="checkbox"
             id="toggle"
             hidden
-            checked={isDark}
-            onChange={toggleMode}
+            checked={darkMode}
+            onChange={toggleDarkMode}
           />
           <label htmlFor="toggle">
             <span />
