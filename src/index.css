@@ -65,28 +65,34 @@ button {
 	--color-black: #000;
 	--color-white: #fff;
 	--color-accent: #03045e;
-	--color-bg: #caf0f8;
-	--color-bg-darker: #acf0fd;
-	--color-bg-nav-hover: #f1f4ff;
-	--color-bg-actived: #435ebe;
-	--color-border: #000;
-	--color-sidebar-bg: #fff;
-	--color-text: #03045e;
+
+	--color-bg: #CAF0F8;
+	--color-bg-darker: #ADE8F4;
+	--color-bg-sidebar: #fff;
+	--color-bg-nav-hover: #e8f8fb;
+	--color-bg-actived: #023E8A;
+	--color-border: #03045E;
+	
+	--color-text: #03045E;
 	--color-text-actived: #fff;
-	--color-text-hover: #5595fc;
+	--color-text-hover: #0096C7;
+	--color-badge: #fff;
 }
 
 html.dark {
-	--color-black: #000;
-	--color-white: #fff;
-	--color-bg: #2300a4;
-	--color-bg-darker: #205295;
-	--color-bg-nav-hover: #6a5aa3;
-	--color-bg-actived: #fff;
-	--color-border: #fff;
-	--color-sidebar-bg: #13005A;
-	--color-text: #fff;
-	--color-text-actived: #000;
-	--color-text-hover: #a6acc0;
+	--color-accent: #495057;
+
+	--color-bg: #212529;
+	--color-bg-darker: #495057;
+	--color-bg-sidebar: #343A40;
+	--color-bg-nav-hover: #222;
+	--color-bg-actived: #495057;
+	--color-border: #F8F9FA;
+	
+	--color-text: #DEE2E6;
+	--color-text-actived: #fff;
+	--color-text-hover: #ADB5BD;
+	--color-badge: #DEE2E6;
 }
-/* https://coolors.co/03045e-023e8a-0077b6-0096c7-00b4d8-48cae4-90e0ef-ade8f4-caf0f8 */
+
+/* https://coolors.co/palette/f8f9fa-e9ecef-dee2e6-ced4da-adb5bd-6c757d-495057-343a40-212529 */
