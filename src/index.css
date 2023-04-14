@@ -60,6 +60,7 @@ button {
 #root {
 	display: grid;
 	grid-template-columns: auto 1fr;
+	height: 100vh;
 }
 :root {
 	--color-black: #000;
@@ -92,7 +93,7 @@ html.dark {
 	--color-text: #DEE2E6;
 	--color-text-actived: #fff;
 	--color-text-hover: #ADB5BD;
-	--color-badge: #DEE2E6;
+	--color-badge: #495057;
 }
 
 /* https://coolors.co/palette/f8f9fa-e9ecef-dee2e6-ced4da-adb5bd-6c757d-495057-343a40-212529 */

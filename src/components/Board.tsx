@@ -1,16 +1,11 @@
-import React from 'react';
+import React, { memo } from 'react';
 import styles from './Board.module.css';
 import ToDoList from './ToDoList';
 import BoardNav from './BoardNav';
 import CreateToDo from './CreateToDo';
+import { IBoardProps } from '../typing/db';
 
-interface IBoardProps {
-  filters: string[];
-  filter: string;
-  category: string;
-}
-
-export default function Board({ filters, filter, category }: IBoardProps) {
+function Board({ filters, filter, category }: IBoardProps) {
   return (
     <main className={styles.board}>
       <div className={styles.header}>
@@ -24,3 +19,5 @@ export default function Board({ filters, filter, category }: IBoardProps) {
     </main>
   );
 }
+
+export default memo(Board);

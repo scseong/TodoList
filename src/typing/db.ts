@@ -50,3 +50,38 @@ export const ACTION = {
 export interface IChildren {
   children: React.ReactNode;
 }
+
+// components props
+export interface IBoardProps {
+  filters: string[];
+  filter: string;
+  category: string;
+}
+
+export interface ICreateToDoProps {
+  category: string;
+}
+
+export interface IInfo {
+  name: string;
+  path: string;
+  length: number;
+}
+
+export interface ISidebarProps {
+  toDosInfo: IInfo[];
+  category: string;
+}
+
+export interface IToDoProps {
+  toDo: IToDo;
+  selectedIds: Set<number>;
+  onToggle: (id: number) => void;
+  onEdit: (id: number) => void;
+  onDelete: (id: number) => void;
+}
+
+export interface IToDoListProps {
+  category: string;
+  filter: string;
+}

@@ -1,15 +1,7 @@
 import React from 'react';
 import { BsPencilSquare, BsTrashFill } from 'react-icons/bs';
-import { DATE_FORMAT_OPTIONS, IToDo } from '../typing/db';
+import { DATE_FORMAT_OPTIONS, IToDoProps } from '../typing/db';
 import styles from './ToDo.module.css';
-
-interface IToDoProps {
-  toDo: IToDo;
-  selectedIds: Set<number>;
-  onToggle: (id: number) => void;
-  onEdit: (id: number) => void;
-  onDelete: (id: number) => void;
-}
 
 export default function ToDo({
   toDo,
@@ -49,10 +41,10 @@ export default function ToDo({
         {new Date(createdBy).toLocaleDateString('ko-KR', DATE_FORMAT_OPTIONS)}
       </span>
       <div className={styles.btnBox}>
-        <button name="edit" onClick={handleClick}>
+        <button name="edit" onClick={handleClick} aria-label="editButton">
           <BsPencilSquare />
         </button>
-        <button name="delete" onClick={handleClick}>
+        <button name="delete" onClick={handleClick} aria-label="deleteButton">
           <BsTrashFill />
         </button>
       </div>

@@ -1,24 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './Sidebar.module.css';
 import { MdTaskAlt } from 'react-icons/md';
 import { RiTaskLine } from 'react-icons/ri';
 import { Link, NavLink } from 'react-router-dom';
-import { useDarkMode } from '../reducer/DarkModeContext';
-
-interface IToDosInfoProps {
-  name: string;
-  path: string;
-  length: number;
-}
-
-interface ISidebarProps {
-  toDosInfo: IToDosInfoProps[];
-  category: string;
-}
+import ToggleTheme from './ToggleTheme';
+import { ISidebarProps } from '../typing/db';
 
 export default function Sidebar({ toDosInfo, category }: ISidebarProps) {
-  const { darkMode, toggleDarkMode } = useDarkMode();
-
   return (
     <aside className={styles.sidebar}>
       <div className={styles.header}>
@@ -30,18 +18,7 @@ export default function Sidebar({ toDosInfo, category }: ISidebarProps) {
             <h1>투두리스트</h1>
           </Link>
         </div>
-        <div className={styles.theme}>
-          <input
-            type="checkbox"
-            id="toggle"
-            hidden
-            checked={darkMode}
-            onChange={toggleDarkMode}
-          />
-          <label htmlFor="toggle">
-            <span />
-          </label>
-        </div>
+        <ToggleTheme />
       </div>
       <nav className={styles.nav}>
         <ul className={styles.navList}>

@@ -3,10 +3,7 @@ import { useToDosDispatch } from '../reducer/ToDosContext';
 import styles from './CreateToDo.module.css';
 import { BsListTask } from 'react-icons/bs';
 import { AiOutlinePlusCircle } from 'react-icons/ai';
-
-interface ICreateToDoProps {
-  category: string;
-}
+import { ICreateToDoProps } from '../typing/db';
 
 export default function CreateToDo({ category }: ICreateToDoProps) {
   const [task, setTask] = useState('');
@@ -46,7 +43,7 @@ export default function CreateToDo({ category }: ICreateToDoProps) {
           type="text"
           placeholder="할 일 추가"
         />
-        <button>
+        <button name="addBtn" aria-label="deleteButton">
           <AiOutlinePlusCircle />
         </button>
       </div>
