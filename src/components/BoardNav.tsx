@@ -1,20 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useToDosState } from '../reducer/ToDosContext';
-import { MAPPING_NAME } from '../typing/db';
+import { IBoardProps, MAPPING_NAME } from '../typing/db';
 import styles from './BoardNav.module.css';
 
-interface IBoardNavProps {
-  category: string;
-  filters: string[];
-  filter: string;
-}
-
-export default function BoardNav({
-  category,
-  filters,
-  filter,
-}: IBoardNavProps) {
+export default function BoardNav({ category, filters, filter }: IBoardProps) {
   const toDos = useToDosState();
   const [lengthArr, setLengthArr] = useState<number[]>([]);
 

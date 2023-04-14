@@ -1,0 +1,30 @@
+.theme label {
+  position: relative;
+  display: block;
+  width: 50px;
+  height: 25px;
+  border-radius: 25px;
+  border: 2px solid var(--color-accent);
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.theme label span {
+  position: absolute;
+  top: 7%;
+  left: 2px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: var(--color-accent);
+  transition: all 0.2s ease-in;
+}
+
+.theme input:checked ~ label {
+  background-color: var(--color-text);
+}
+
+.theme input:checked ~ label span {
+  left: calc(100% - 19px);
+  background: var(--color-accent);
+}

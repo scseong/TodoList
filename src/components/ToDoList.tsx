@@ -1,13 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useToDosDispatch, useToDosState } from '../reducer/ToDosContext';
-import { IToDoState } from '../typing/db';
+import { IToDoListProps, IToDoState } from '../typing/db';
 import ToDo from './ToDo';
 import styles from './ToDoList.module.css';
-
-interface IToDoListProps {
-  category: string;
-  filter: string;
-}
 
 function getFilteredItems(todos: IToDoState, filter: string, category: string) {
   if (filter === 'all') return todos[category].sort((a, b) => b.id - a.id);
