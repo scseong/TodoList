@@ -1,0 +1,33 @@
+/* main nav */
+.nav {
+  margin-bottom: 1rem;
+}
+
+.nav ul {
+  display: flex;
+  border-bottom: 2px solid var(--color-border);
+}
+
+.navItem {
+  position: relative;
+  margin-right: 1rem;
+  text-align: center;
+  transition: color 0.2s ease-in-out;
+}
+
+.navItem:hover {
+  color: var(--color-text-hover);
+}
+
+.navItem a {
+  display: inline-block;
+  padding: 1rem 0;
+}
+
+.navItemActive {
+  border-bottom: 2px solid var(--color-border);
+}
+
+.count {
+  margin-left: 0.4rem;
+}

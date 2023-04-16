@@ -1,0 +1,99 @@
+.sidebar {
+  width: 300px;
+  height: 100%;
+  padding: 0;
+  background-color: var(--color-bg-sidebar);
+  color: var(--color-text);
+}
+
+/* header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3rem 2rem 1.5rem 2rem;
+}
+
+.logo {
+  height: fit-content;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.logo i {
+  margin-right: 4px;
+}
+
+.logo i svg {
+  transform: translateY(15%);
+}
+
+.logo h1 {
+  display: inline-block;
+}
+
+/* nav */
+.nav {
+  padding: 0 2rem;
+  margin-top: 1rem;
+}
+
+.navIndex {
+  font-size: 1.2rem;
+}
+
+.navItem,
+.navItemActive {
+  margin-top: 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.navItem:hover {
+  background-color: var(--color-bg-nav-hover);
+}
+
+.navItemActive {
+  background-color: var(--color-bg-actived);
+  color: var(--color-text-actived);
+}
+
+.navItem a,
+.navItemActive a {
+  display: flex;
+  padding: 0.8rem 1rem;
+  cursor: pointer;
+}
+
+.navItem a div,
+.navItemActive a div {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: 100%;
+  gap: 0.6rem;
+}
+
+.navItem a i {
+  transform: translateY(8%);
+}
+
+.navItem a span:nth-child(even) {
+  flex: 1;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.navItem a span,
+.navItemActive a span {
+  line-height: 1.1rem;
+}
+
+/* common */
+.drag-prevent {
+  -ms-user-select: none;
+  -moz-user-select: -moz-none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  user-select: none;
+}

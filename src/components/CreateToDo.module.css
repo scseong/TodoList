@@ -1,0 +1,53 @@
+.todoForm {
+  margin-bottom: 1rem;
+}
+
+.todoBox {
+  display: flex;
+  align-items: center;
+  padding: 0 0.6rem;
+  background-color: var(--color-bg-darker);
+  border-radius: 0.6rem;
+  transition: outline-color 1s ease-in-out;
+}
+
+.todoBox svg:first-child {
+  width: 20px;
+  height: 20px;
+  color: var(--main-text);
+}
+
+.todoBox input {
+  width: 100%;
+  padding: 0.6rem;
+  background: inherit;
+  border: none;
+  border-radius: 0.6rem;
+  color: var(--color-text);
+  font-size: 1rem;
+  outline: none;
+}
+
+.todoBox:has(input:focus) {
+  outline: 2px solid var(--color-text);
+}
+
+.todoBox input::placeholder {
+  color: var(--color-text);
+}
+
+.todoBox button {
+  margin: 0;
+  padding: 0;
+  color: var(--color-text);
+  cursor: pointer;
+  transition: transform 0.3s linear;
+}
+
+.todoBox button:hover {
+  transform: scale(1.1);
+}
+
+.todoBox svg:last-child {
+  vertical-align: bottom;
+}

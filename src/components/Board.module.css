@@ -1,0 +1,19 @@
+.board {
+  padding: 3rem 2rem 2rem;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+.header {
+  margin-bottom: 1rem;
+}
+
+.header h2 {
+  font-size: 2rem;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.container {
+  max-width: 50vw;
+}

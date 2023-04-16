@@ -1,0 +1,99 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	font-family: 'Jua', sans-serif;
+	line-height: 1;
+	letter-spacing: 0.05em;
+}
+ol, ul, li {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+a {
+    text-decoration: none;
+    color: inherit;
+}
+input {
+	font-family: 'Jua', sans-serif;
+}
+button {
+	background-color: inherit;
+	border: none;
+}
+* {
+    box-sizing: border-box;
+}
+#root {
+	display: grid;
+	grid-template-columns: auto 1fr;
+	height: 100vh;
+}
+:root {
+	--color-black: #000;
+	--color-white: #fff;
+	--color-accent: #03045e;
+
+	--color-bg: #CAF0F8;
+	--color-bg-darker: #ADE8F4;
+	--color-bg-sidebar: #fff;
+	--color-bg-nav-hover: #e8f8fb;
+	--color-bg-actived: #023E8A;
+	--color-border: #03045E;
+	
+	--color-text: #03045E;
+	--color-text-actived: #fff;
+	--color-text-hover: #0096C7;
+	--color-badge: #fff;
+}
+
+html.dark {
+	--color-accent: #495057;
+
+	--color-bg: #212529;
+	--color-bg-darker: #495057;
+	--color-bg-sidebar: #343A40;
+	--color-bg-nav-hover: #222;
+	--color-bg-actived: #495057;
+	--color-border: #F8F9FA;
+	
+	--color-text: #DEE2E6;
+	--color-text-actived: #fff;
+	--color-text-hover: #ADB5BD;
+	--color-badge: #495057;
+}
+
+/* https://coolors.co/palette/f8f9fa-e9ecef-dee2e6-ced4da-adb5bd-6c757d-495057-343a40-212529 */

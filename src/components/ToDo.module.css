@@ -1,0 +1,77 @@
+.toDoItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.4rem;
+}
+
+.toDoItem input {
+  flex: 0 1 0;
+}
+
+.toDoItem label {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.toDoItem span {
+  flex: 1 1 0;
+  word-break: break-all;
+  overflow: hidden;
+}
+
+.toDoItem span ~ span {
+  flex: 0 0 auto;
+  letter-spacing: 0;
+}
+
+/* checkbox */
+.toDoItem input {
+  cursor: pointer;
+}
+.toDoItem label {
+  position: relative;
+  display: block;
+  width: 20px;
+  height: 20px;
+  background: var(--color-badge);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.toDoItem input:checked ~ label::after {
+  content: '';
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  width: 8px;
+  height: 4px;
+  border-left: 3px solid var(--color-text);
+  border-bottom: 3px solid var(--color-text);
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.toDoItem input:checked ~ span {
+  text-decoration-line: line-through;
+  opacity: 0.6;
+}
+
+.btnBox button {
+  padding: 0 0.3rem;
+  cursor: pointer;
+  transform: translateY(0.8px);
+}
+
+.btnBox button svg {
+  fill: var(--color-text);
+}
+
+.btnBox button:hover svg {
+  fill: var(--color-text-hover);
+}
